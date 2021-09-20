@@ -1,10 +1,11 @@
-import example.jni.hello.HelloWorld
+package example.hello
+
 import org.junit.Test
 
-class HelloWorldTest {
+class HelloWorldTest{
 
     @Test
-    fun helloWorld() {
+    fun helloWorld(){
         HelloWorld.helloWorld("JNI developer")
     }
 }

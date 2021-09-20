@@ -1,6 +1,5 @@
 plugins {
     kotlin("multiplatform") version "1.5.30"
-    `java-library`
 }
 
 group = "example.jni"
@@ -8,11 +7,6 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
-}
-
-dependencies {
-    implementation("junit:junit:4.+")
-    implementation("junit:junit:4.13.1")
 }
 
 kotlin {
@@ -26,7 +20,10 @@ kotlin {
             // This system property was added to add the "print_line" build as java class path.
             systemProperty(
                 "java.library.path",
-                file("${project(":print_line").buildDir}/lib/main/debug").absolutePath
+                listOf(
+                    file("${project(":print_line").buildDir}/lib/main/debug").absolutePath,
+                ).joinToString(":") + ":" + System.getProperty("java.library.path")
+
             )
         }
     }

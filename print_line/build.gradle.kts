@@ -19,7 +19,6 @@ library {
             osFamily.isWindows -> compileTask.includes.from("$javaHome/include/win32")
         }
 
-        compileTask.includes.setFrom(fileTree("src/main/public"))
         compileTask.source.setFrom(fileTree("src/main/cpp"))
 
         when(toolChain) {
