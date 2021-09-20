@@ -26,16 +26,17 @@ static const char *JNIT_CLASS = "example/interop/PrintLine";
 /*
  * Class:     example_interop_PrintLine
  * Method:    posix_print
- * Signature: (Ljava/lang/String;)
+ * Signature: (Ljava/lang/String;)Z
  */
 static jboolean posix_print(JNIEnv * env, jclass thisClass, jstring message){
     const char *buf = (*env)->GetStringUTFChars(env, message, 0);
-    int result = printf(buf);
+    int result = printf("%s", buf);
     (*env)->ReleaseStringUTFChars(env, message, buf);
+    return JNI_TRUE;
 }
 
 static JNINativeMethod funcs[] = {
-	{ "posix_print", "(Ljava/lang/String;)", (void *)&posix_print }
+	{ "posix_print", "(Ljava/lang/String;)Z", (void *)&posix_print }
 };
 
 #define CURRENT_JNI JNI_VERSION_1_6

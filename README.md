@@ -1,6 +1,6 @@
 # KotlinGradleJNILibrary
 
-This is an example implementation of classes that may be interoperable both with Kotlin/Native and Kotlin/Jvm.
+This is an example implementation of classes that may be interoperable both with Kotlin/Native and Kotlin/Jvm via Java Native Interface.
 As recommended all important implentations are done in Kotlin/Common, then the interoperability is implemented in the other platforms.
 
 Technically the method `print` is implemented platform specifically for demonstration purposes, that means that `println` is not used.

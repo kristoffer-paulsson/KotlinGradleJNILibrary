@@ -15,7 +15,7 @@ kotlin {
             kotlinOptions.jvmTarget = "1.8"
         }
         testRuns["test"].executionTask.configure {
-            useJUnitPlatform()
+            useJUnit()
             // !IMPORTANT!
             // This system property was added to add the "print_line" build as java class path.
             systemProperty(
@@ -23,7 +23,6 @@ kotlin {
                 listOf(
                     file("${project(":print_line").buildDir}/lib/main/debug").absolutePath,
                 ).joinToString(":") + ":" + System.getProperty("java.library.path")
-
             )
         }
     }
@@ -40,7 +39,11 @@ kotlin {
     sourceSets {
         val commonMain by getting
         val jvmMain by getting
-        val jvmTest by getting
+        val jvmTest by getting{
+            dependencies {
+                implementation("junit:junit:4.13.1")
+            }
+        }
     }
 }
 
